@@ -1,7 +1,10 @@
 <script lang="ts">
 	import type { HTMLAttributes } from "svelte/elements";
 
-	let div = $state<HTMLDivElement | null>(null);
+	import Input from "$components/Input.svelte";
+	import { clsx } from "$lib/clsx";
+
+	let chatUl = $state<HTMLUListElement | null>(null);
 
 	const pause = (ms: number) => new Promise((fulfil) => setTimeout(fulfil, ms));
 
@@ -17,13 +20,13 @@
 
 	$effect(() => {
 		comments;
-		div?.scrollTo(0, div.scrollHeight);
+		chatUl?.scrollTo(0, chatUl.scrollHeight);
 	});
 
 	const submitChat: HTMLAttributes<HTMLFormElement>["on:submit"] = async (event) => {
 		const formData = new FormData(event.currentTarget);
 		const value = formData.get("value");
-		if (!value || typeof value !== "string" || disable || !div) {
+		if (!value || typeof value !== "string" || disable || !chatUl) {
 			return;
 		}
 		const comment = {
@@ -47,7 +50,7 @@
 		// });
 
 		// await REPLY = GetValue ();
-		div.scrollTo(0, div.scrollHeight);
+		chatUl.scrollTo(0, chatUl.scrollHeight);
 		disable = true;
 
 		// cai nay thay bang fetch data, cai nay nghia lam
@@ -70,156 +73,16 @@
 	};
 </script>
 
-<div class="button-container">
-	<!-- Four buttons inside the container -->
-	<button class="action-button">Who are us?</button>
-	<button class="action-button">Why are us?</button>
-	<button class="action-button">When use this</button>
-	<button class="action-button">How to use</button>
-</div>
-<img class="logo" src="PLANNER.jpg" alt="Logo" />
-<div class="container">
-	<div class="chat" bind:this={div}>
+<div class="w-full flex flex-col px-2 py-4">
+	<ul class="chat grow" bind:this={chatUl}>
 		{#each comments as comment}
-			<article class={comment.author}>
-				<span>{comment.text}</span>
-			</article>
+			<li class={clsx("chat-bubble", comment.author === "user" ? "self" : "others")}>
+				<div class="px-4 py-2">{comment.text}</div>
+			</li>
 		{/each}
-	</div>
-	<form on:submit|preventDefault={submitChat}>
-		<input type="text" name="value" aria-label="Chat input" placeholder="Example: abcxyz,..." />
+	</ul>
+	<form class="" on:submit|preventDefault={submitChat}>
+		<Input type="text" name="value" label="Type something..." id="chat-input" />
 		<button disabled={disable} type="submit" style="display: none;" />
 	</form>
-	<p class="posit">Page 1</p>
 </div>
-
-<style>
-	.button-container {
-		position: fixed;
-		bottom: 20px;
-		right: 20px;
-		display: flex;
-		flex-direction: column-reverse; /* Align buttons vertically and reverse order */
-	}
-	.action-button {
-		width: 200px;
-		height: 60px;
-		background-color: white;
-		border: 2px solid #fff; /* White border */
-		color: black;
-		margin-bottom: 10px; /* Adjust spacing between buttons */
-		cursor: pointer;
-		transition: background-color 0.9s;
-		border: 2px solid black;
-	}
-	.action-button:hover {
-		background-color: black;
-		color: white;
-	}
-
-	/* h1 {
-    float: left;
-    display: block;
-    padding: 0.5px;
-    text-decoration: none;
-    font-size: larger;
-    color: #f0f3ed;
-  } */
-
-	.container {
-		position: relative;
-		display: grid;
-		place-items: center;
-		width: 1000px;
-		height: 530px;
-		max-height: 5000px;
-		justify-content: center;
-
-		backdrop-filter: blur(5.5px);
-		-webkit-backdrop-filter: blur(5.5px);
-		border: 1px solid rgba(255, 255, 255, 0.1);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(35, 35, 35, 0.1);
-		color: #ffffff;
-		backdrop-filter: blur(4px);
-		-webkit-backdrop-filter: blur(4px);
-		background: #333333;
-		border: 1px solid rgba(255, 255, 255, 0.34);
-		flex-basis: 400px;
-
-		/* position: absolute; top: 36.1511px; left: 36.1511px; width: 570.698px; height: 289.209px; */
-	}
-
-	.logo {
-		position: fixed;
-		top: 100px; /* Adjust the top value as needed */
-		left:0px; /* Adjust the right value as needed */
-		max-width: 1000px; /* Set the maximum width of your logo */
-		max-height: 1000px; /* Set the maximum height of your logo */
-		width:200px;
-                height:200px
-	}
-	.chat {
-		height: 1em;
-		flex: 1 1 auto;
-		padding: 20px 1em 0;
-		overflow-y: auto;
-		scroll-behavior: smooth;
-		width: 1000px;
-		height: 500px;
-		max-height: 500px;
-	}
-
-	article {
-		margin: 1px 0 1px;
-	}
-
-	.user {
-		text-align: right;
-	}
-
-	span {
-		padding: 0.5em 1em;
-		display: inline-block;
-	}
-
-	.user span {
-		word-wrap: break-word;
-		max-width: 60%;
-		background-color: #0074d9;
-		color: var(--fg-1);
-		border-radius: 1em 1em 0 1em;
-		word-break: break-all;
-	}
-
-	.ChatGPT span {
-		word-wrap: break-word;
-		max-width: 60%;
-		background-color: #778899;
-		color: var(--fg-1);
-		border-radius: 1em 1em 0 1em;
-		word-break: break-all;
-	}
-
-	input {
-		place-items: right;
-		border-radius: 0.5em 0.5em 0.5em 0.5em;
-		overflow-y: auto;
-		scroll-behavior: smooth;
-		width: 80%;
-		max-width: 80%;
-		height: auto;
-		word-wrap: break-word; /* IE 5.5-7 */
-		white-space: -moz-pre-wrap; /* Firefox 1.0-2.0 */
-		white-space: pre-wrap;
-		margin-top: 20px;
-	}
-
-	.posit {
-		position: absolute;
-		bottom: 10px;
-		left: 50%;
-		transform: translateX(-50%);
-		color: #ffffff;
-	}
-</style>

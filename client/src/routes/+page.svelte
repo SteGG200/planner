@@ -26,7 +26,6 @@
 		if (!value || typeof value !== "string" || disable || !div) {
 			return;
 		}
-<<<<<<< Updated upstream
 		const comment = {
 			author: "user",
 			text: value,
@@ -79,27 +78,6 @@
 	<button class="action-button">How to use</button>
 </div>
 <img class="logo" src="PLANNER.jpg" alt="Logo" />
-=======
-	}
-let isPopupVisible1 = false;
-
-  function togglePopup1() {
-    isPopupVisible1 = !isPopupVisible1;
-  }
-</script>
-
-<body>
-    <nav class="navbar">
-      <img class="logo" src="PLANNER.jpg" alt="Logo" />
-      <div class="button-container">
-        <!-- Four buttons inside the container -->
-        <button class="action-button1" on:click={togglePopup1}>Who are we?</button>
-        <button class="action-button2">Why are we?</button>
-        <button class="action-button3">When use this?</button>
-        <button class="action-button4">How to use?</button>
-      </div>
-    </nav>
->>>>>>> Stashed changes
 <div class="container">
 	<div class="chat" bind:this={div}>
 		{#each comments as comment}
@@ -114,7 +92,6 @@ let isPopupVisible1 = false;
 	</form>
 	<p class="posit">Page 1</p>
 </div>
-<<<<<<< Updated upstream
 
 <style>
 	.button-container {
@@ -123,60 +100,6 @@ let isPopupVisible1 = false;
 		right: 20px;
 		display: flex;
 		flex-direction: column-reverse; /* Align buttons vertically and reverse order */
-=======
-</body>
-<style>
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px; /* Adjust padding for a smaller navbar */
-  background-color:  #000000;
-  color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-height:10px
-}
-.vertical-navbar img {
-  max-width: 150px;
-  max-height: 50px;
-}
-.button-container {
-    display: flex;
-    gap: 0px; /* Adjust gap for spacing between buttons */
-  }
- .action-button1,.action-button2,.action-button3,.action-button4 {
-    padding: 8px 12px; 
-    background-color: #000000;
-    border: none;
-    color: #ffffff;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-.action-button1:hover {
-  background-color: #0056b3;
-}
-.action-button2:hover {
-  background-color: #0056b3;
-}
-.action-button3:hover {
-  background-color: #0056b3;
-}
-.action-button4:hover {
-  background-color: #0056b3;
-}
-
-
-body{
-		align-items: center;
-		/* background: linear-gradient(#eb9292, #f8ff78, #6363c9); */
-		background: #333333;
-		/* display: flex; */
-		/* font-family: 'Dosis', 'san-serif'; */
-		font-display: swap;
-		height: inherit;
-		justify-content: center;
->>>>>>> Stashed changes
 	}
 	.action-button {
 		width: 200px;
@@ -189,7 +112,6 @@ body{
 		transition: background-color 0.9s;
 		border: 2px solid black;
 	}
-<<<<<<< Updated upstream
 	.action-button:hover {
 		background-color: black;
 		color: white;
@@ -227,20 +149,6 @@ body{
 
 		/* position: absolute; top: 36.1511px; left: 36.1511px; width: 570.698px; height: 289.209px; */
 	}
-=======
-	
-	
-		.container {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-		
->>>>>>> Stashed changes
 
 	.logo {
 		position: fixed;
@@ -252,7 +160,6 @@ body{
                 height:200px
 	}
 	.chat {
-<<<<<<< Updated upstream
 		height: 1em;
 		flex: 1 1 auto;
 		padding: 20px 1em 0;
@@ -262,18 +169,6 @@ body{
 		height: 500px;
 		max-height: 500px;
 	}
-=======
-  height: 500px; /* Increase the height of the chat area */
-  width: 100%;
-  overflow-y: auto;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  margin-top: 20px;
-  padding: 15px;
-}
-
-	
->>>>>>> Stashed changes
 
 	article {
 		margin: 1px 0 1px;
@@ -289,7 +184,6 @@ body{
 	}
 
 	.user span {
-<<<<<<< Updated upstream
 		word-wrap: break-word;
 		max-width: 60%;
 		background-color: #0074d9;
@@ -329,56 +223,3 @@ body{
 		color: #ffffff;
 	}
 </style>
-=======
-word-wrap: break-word;
-		max-width: 60%;
-word-break: break-all;
-   background-color: #0074d9;
-   color: #ffffff;
-   border-radius: 15px;
-   padding: 10px;
-   margin: 5px;
-   display: inline-block;
-   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-	.ChatGPT span {
-   background-color: #778899;
-   color: #ffffff;
-   border-radius: 15px;
-   padding: 10px;
-   margin: 5px;
-   display: inline-block;
-   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-word-wrap: break-word;
-		max-width: 60%;
-word-break: break-all;
-
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #333333;
-  border-radius: 5px;
-}
-.posit{
- position: absolute;
-    bottom: 10px; 
-    left: 50%;
-    transform: translateX(-50%);
-    color: #ffffff;
-}
-.chat::-webkit-scrollbar {
-   width: 8px;
-}	
-.chat::-webkit-scrollbar-track {
-   background-color: #ffffff; /* color of the track */
-}
-.chat::-webkit-scrollbar-thumb {
-   background-color: #000000; /* color of the handle */
-   border-radius: 4px; /* rounded corners on the handle */
-}
-</style>
->>>>>>> Stashed changes

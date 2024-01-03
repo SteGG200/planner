@@ -19,26 +19,28 @@
 	}
 }
 
-.chat-bubble {
-	@apply w-fit mb-1;
-}
-.chat-bubble.self {
-	@apply bg-accent-light dark:bg-accent-dark ml-auto text-white dark:text-black rounded-r-sm rounded-l-xl;
-}
-.chat-bubble.others {
-	@apply bg-gray-300 dark:bg-slate-700 text-black dark:text-white mr-auto rounded-l-sm rounded-r-xl;
-}
-.chat-bubble.self:first-child,
-.chat-bubble.others + .chat-bubble.self {
-	@apply rounded-tr-xl;
-}
-.chat-bubble.others:first-child,
-.chat-bubble.self + .chat-bubble.others {
-	@apply rounded-tl-xl;
-}
-.chat-bubble.others::before {
-	@apply right-4;
-}
-.chat-bubble.self::before {
-	@apply left-4;
+@layer utilities {
+	.chat-bubble {
+		@apply w-fit mb-1;
+	}
+	.chat-bubble.self {
+		@apply bg-accent-light dark:bg-accent-dark ml-auto text-white dark:text-black rounded-r-sm rounded-l-xl;
+	}
+	.chat-bubble.others {
+		@apply bg-gray-300 dark:bg-slate-700 text-black dark:text-white mr-auto rounded-l-sm rounded-r-xl;
+	}
+	.chat-bubble.self:first-child,
+	.chat-bubble.others + .chat-bubble.self {
+		@apply rounded-tr-xl;
+	}
+	.chat-bubble.others:first-child,
+	.chat-bubble.self + .chat-bubble.others {
+		@apply rounded-tl-xl;
+	}
+	.chat-bubble.others::before {
+		@apply right-4;
+	}
+	.chat-bubble.self::before {
+		@apply left-4;
+	}
 }

@@ -20,7 +20,10 @@
 
 	$effect(() => {
 		comments;
-		chatUl?.scrollTo(0, chatUl.scrollHeight);
+		chatUl?.scrollTo({
+			top: chatUl.scrollHeight,
+			behavior: "smooth",
+		});
 	});
 
 	const submitChat: HTMLAttributes<HTMLFormElement>["on:submit"] = async (event) => {
@@ -73,8 +76,8 @@
 	};
 </script>
 
-<div class="w-full flex flex-col px-2 py-4">
-	<ul class="chat grow" bind:this={chatUl}>
+<div class="w-full flex flex-col px-2 py-4 max-h-dvh gap-3">
+	<ul class="chat grow overflow-y-auto" bind:this={chatUl}>
 		{#each comments as comment}
 			<li class={clsx("chat-bubble", comment.author === "user" ? "self" : "others")}>
 				<div class="px-4 py-2">{comment.text}</div>
@@ -82,7 +85,13 @@
 		{/each}
 	</ul>
 	<form class="" on:submit|preventDefault={submitChat}>
-		<Input type="text" name="value" label="Type something..." id="chat-input" />
+		<Input
+			type="text"
+			name="value"
+			label="Type something..."
+			id="chat-input"
+			autocomplete="off"
+		/>
 		<button disabled={disable} type="submit" style="display: none;" />
 	</form>
 </div>

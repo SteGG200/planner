@@ -22,9 +22,6 @@
 		value,
 		...rest
 	} = $props<InputProps>();
-
-	// let inputValue = $state<any>(undefined);
-	let inputValue = $state<any>(value ?? undefined);
 </script>
 
 <div class="relative">
@@ -48,7 +45,6 @@
 		)}
 		aria-invalid={!!errorText}
 		aria-describedby={errorTextId}
-		bind:value={inputValue}
 		placeholder=" "
 		{...rest}
 	/>

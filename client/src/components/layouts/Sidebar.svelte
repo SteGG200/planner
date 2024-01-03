@@ -3,12 +3,12 @@
 	import { slide } from "svelte/transition";
 
 	import { page } from "$app/stores";
+	import ChatGPT from "$components/icons/ChatGPT.svelte";
 	import { clsx } from "$lib/clsx";
 	import { isLinkActive } from "$lib/isLinkActive";
 
 	import { SIDEBAR_LINKS } from "./navbar-constants";
 	import SidebarLink from "./SidebarLink.svelte";
-	import ChatGPT from "$components/icons/ChatGPT.svelte";
 
 	const links = $derived(
 		SIDEBAR_LINKS.map(({ href, ...rest }) => ({

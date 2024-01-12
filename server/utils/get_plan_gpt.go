@@ -9,15 +9,12 @@ import (
 	"os"
 )
 
-// func format_plan(plan string) string {
-
-// }
 func GetPlanGpt(usergoal string, time string, information []Query) (string, error) {
 	api_key := os.Getenv("OPENAI_API_KEY")
 	information_json, _ := json.Marshal(information)
 
 	body_req := CreateBody(
-		"You are a planner. User has a goal is: \"" + Escape(usergoal) + "\" and you have just got information about user's goal with the conversation in json format: " + string(information_json) + ".Divide " + time + " into maximum 10 interval time and tell user what they should do in each time to achieve their goal (just send a json format like this example [{\"time\": \"interval time...\", \"plan\": \"plan in that interval time...\"}...]",
+		"You are a planner. User has a goal is: \"" + Escape(usergoal) + "\" and you have just got information about user's goal with the conversation in json format: " + string(information_json) + ".Divide " + time + " into maximum 10 interval time and tell user what they should do in each time to achieve their goal (just send a json format like this example [{\"time\": \"interval time...\", \"plan\": \"plan in that interval time...\"}...] without symbol new line between each element",
 	)
 	buffer := new(bytes.Buffer)
 	json.NewEncoder(buffer).Encode(body_req)

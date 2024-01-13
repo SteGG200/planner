@@ -17,7 +17,15 @@ func GetPlanGpt(usergoal string, time string, information []Query) (string, erro
 	information_json, _ := json.Marshal(information)
 
 	body_req := CreateBody(
-		"You are a planner. User has a goal is: \"" + Escape(usergoal) + "\" and you have just got information about user's goal with the conversation in json format: " + string(information_json) + ".Divide " + time + " into maximum 10 interval time and tell user what they should do in each time to achieve their goal (just send a json format like this example [{\"time\": \"interval time...\", \"plan\": \"plan in that interval time...\"}...]",
+		"You are a planner assistant. User has a goal is: \"" + Escape(usergoal) +
+			"\". They have exact " + time + " to achieve the goal no more no less and there are some extra information about user is provided in this json format: " +
+			string(information_json) + ".Divide " + time + " into maximum 10 periods. " +
+			"Each period should be from a month to another. For example from month 1 - month 4. " +
+			"All the period do not need to have the same time interval. " +
+			"Tell user what they should do in each period and " +
+			"list the books and websites they could use to study in each period" +
+			"(answer in a json format the exact same as this example [{\"time\": \"...\", \"plan\": \"plan in that period...\", \"resourses\":" +
+			" \" 1) ...  2) ...  \"}...] .",
 	)
 	buffer := new(bytes.Buffer)
 	json.NewEncoder(buffer).Encode(body_req)

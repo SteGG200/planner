@@ -17,6 +17,10 @@
 	</main>
 </div> -->
 
+<svelte:head>
+	<title>Planner</title>
+</svelte:head>
+
 <main class="w-full min-h-[100vh] h-fit">
 	<slot />
 </main>

@@ -19,6 +19,7 @@
 	<link rel="canonical" href={$page.url.href} />
 	<!-- <meta name="theme-color" content={isDark ? "#000000" : "#FFFFFF"} /> -->
 </svelte:head>
-<main id="main-content" class="w-full min-w-0">
+
+<main class="w-full min-h-[100vh] h-fit">
 	<slot />
 </main>

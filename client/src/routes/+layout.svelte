@@ -10,9 +10,13 @@
 >
 	Skip to main content
 </a>
-<div class="flex flex-grow w-full flex-col md:flex-row">
+<!-- <div class="flex flex-grow w-full flex-col md:flex-row">
 	<Sidebar />
 	<main id="main-content" class="w-full min-w-0">
 		<slot />
 	</main>
-</div>
+</div> -->
+
+<main class="w-full min-h-[100vh] h-fit">
+	<slot />
+</main>

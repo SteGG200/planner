@@ -1,7 +1,9 @@
 <script>
 	import "../app.css";
 
-	import Sidebar from "$components/layouts/Sidebar.svelte";
+	import { page } from "$app/stores";
+
+	const title = $derived($page.data.title ? `${$page.data.title} - Planner` : "Planner");
 </script>
 
 <a
@@ -10,15 +12,12 @@
 >
 	Skip to main content
 </a>
-<!-- <div class="flex flex-grow w-full flex-col md:flex-row">
-	<Sidebar />
-	<main id="main-content" class="w-full min-w-0">
-		<slot />
-	</main>
-</div> -->
-
 <svelte:head>
-	<title>Planner</title>
+	<title>{title}</title>
+	<meta property="og:title" content={title} />
+	<meta name="twitter:title" content={title} />
+	<link rel="canonical" href={$page.url.href} />
+	<!-- <meta name="theme-color" content={isDark ? "#000000" : "#FFFFFF"} /> -->
 </svelte:head>
 
 <main class="w-full min-h-[100vh] h-fit">

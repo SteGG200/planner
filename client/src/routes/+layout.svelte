@@ -17,9 +17,6 @@
 	<meta property="og:title" content={title} />
 	<meta name="twitter:title" content={title} />
 	<link rel="canonical" href={$page.url.href} />
-	<!-- <meta name="theme-color" content={isDark ? "#000000" : "#FFFFFF"} /> -->
 </svelte:head>
 
-<main id="main-content" class="w-full min-h-[100vh] h-fit">
-	<slot />
-</main>
+<slot />
